@@ -22,6 +22,27 @@ sequenceDiagram
     後端->>前端:回傳使用者資料
 ```
 
+## login by Herman
+
+```mermaid
+sequenceDiagram
+    participant user
+    participant front
+    participant server
+    participant database
+    participant OAuth2
+    user->>front: into Carcoop 
+    front->>OAuth2: facebook login
+    note over front: create task or join task
+    OAuth2->>server: get access token and user info
+    note over OAuth2: Validation succeeded
+    server->>database: register or login
+    database->>server: response user data
+    note over server: create login session or JWT
+    server->>front: add cookie token
+    note over front: redirect to Carcoop
+```
+
 ## 司機發起行程
 
 ```mermaid
